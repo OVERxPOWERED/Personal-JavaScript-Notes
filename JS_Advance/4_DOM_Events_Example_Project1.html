@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Click on any image to make it disappear</h1>
+    <button id="reset">reset</button>
+    <ul id="imgList">
+        <li class="imageBox"><img src="https://th.bing.com/th/id/OIP.jHvTOSF7924Ah63W7mozxQHaEo?w=248&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt=""></li>
+        <li class="imageBox"><img src="https://th.bing.com/th/id/OIP.8ANqbSwwSNzpWWmx1Ru0FQHaEK?w=310&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt=""></li>
+        <li class="imageBox"><img src="https://th.bing.com/th/id/OIP.Vgo2YDSs48ZUFNmcDKHI3gHaE5?w=238&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt=""></li>
+        <li class="imageBox"><img src="https://th.bing.com/th/id/OIP.amEbZWd9JRcIxkyVtYNODwHaE8?w=272&h=181&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt=""></li>
+        <li class="imageBox"><img src="https://th.bing.com/th/id/OIP.SQQFm-oK6Lu_eMaiGGRI1AHaE8?w=250&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt=""></li>
+    </ul>
+
+    <script>
+        const myImgList = document.querySelector('#imgList');
+        const myReset = document.querySelector('#reset');
+
+        myImgList.addEventListener('click',(e)=>{
+            let ele = e.target;
+           console.log(ele.tagName);
+           if(ele.tagName === "IMG"){
+                ele.parentElement.style.display = 'none';
+           }
+        });
+
+        myReset.addEventListener('click',()=>{
+            for(let li of myImgList.children){
+                li.style.display = 'block';
+            }
+        })
+
+        // for(let li of myImgList.children){
+        //     li.addEventListener('click', () => {
+        //         li.style.display = 'none';
+        //     });
+        // }
+
+        myReset.addEventListener('click', () => {
+            for(let li of myImgList.children){
+                li.style.display = 'block';
+            }
+        })
+    </script>
+</body>
+</html>

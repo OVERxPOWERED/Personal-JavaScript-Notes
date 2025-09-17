@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <p id="status"></p>
+    <p id="res"></p>
+
+    
+		            
+
+    <table style="text-align: left; border: 2px solid; & *{padding : 0; margin: 0;}">
+        <tr>
+            <th style="border-right: 2px solid; border-bottom: 2px solid;">Value</th>
+            <th style="border-right: 2px solid; border-bottom: 2px solid;">State</th>
+            <th style=" border-bottom: 2px solid;">Description</th>
+        </tr>
+        <tr>
+            <td style="border-right: 2px solid;">0</td>
+            <td style="border-right: 2px solid;">UNSENT</td>
+            <td>Client has been created. open() not called yet.</td>
+        </tr>
+        <tr>
+            <td style="border-right: 2px solid;">1</td>
+            <td style="border-right: 2px solid;">OPENED</td>
+            <td>open() has been called.</td>
+        </tr>
+        <tr>
+            <td style="border-right: 2px solid;">2</td>
+            <td style="border-right: 2px solid;">HEADERS_RECEIVED</td>
+            <td>send() has been called, and headers and status are available.</td>
+        </tr>
+        <tr>
+            <td style="border-right: 2px solid;">3</td>
+            <td style="border-right: 2px solid;">LOADING</td>
+            <td>Downloading; responseText holds partial data.</td>
+        </tr>
+        <tr>
+            <td style="border-right: 2px solid;">4</td>
+            <td style="border-right: 2px solid;">DONE</td>
+            <td>The operation is complete.</td>
+        </tr>
+    </table>
+    
+    <script>
+
+        // This was used for sending requests to APIs before, this is a legacy code
+        // The below code is sending reqest to an api
+        //This is the basics
+
+        const p1 = document.querySelector('#status');
+        const p2 = document.querySelector('#res');
+
+        const requestUrl = 'https://randomuser.me/api/1.4/';
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", requestUrl);
+        xhr.send();
+        xhr.onreadystatechange = ()=>{
+            console.log(xhr.readyState)
+            p1.innerHTML = xhr.readyState;
+            if(xhr.readyState === 4){
+                let data = JSON.parse(xhr.responseText);
+                console.log(data);
+              
+            }
+        }
+
+
+    </script>
+</body>
+</html>

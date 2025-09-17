@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure</title>
+</head>
+<body>
+    <button id="orange">ORANGE</button>
+    <button id="green">GREEN</button>
+
+    <script>
+        // function handleClick(color){
+        //     document.body.style.backgroundColor = `${color}`;
+        // }
+
+        // As we know onclick requires a function reference but if we just give the reference as we did below, how would we be able to pass the color argument?
+        // document.getElementById("orange").onclick = handleClick;
+        // document.getElementById("green").onclick = handleClick;
+
+        // There are two ways to solve this problem:
+        // 1. We can use .bind(), we know it returns a new function reference with the context of 'this' set to the first argument passed to it and allows to pass additional arguments.
+        // document.getElementById("orange").onclick = handleClick.bind(null, "orange");
+        // document.getElementById("green").onclick = handleClick.bind(null, "green");
+        // This solution works but it is not the best way to do it.
+
+        // 2. We can use a closure to create a new function that calls handleClick with the desired argument.
+        // document.getElementById("orange").onclick = () => handleClick("orange");
+        // document.getElementById("green").onclick = () => handleClick("green");
+        // This solution is more readable and allows us to pass any number of arguments to handleClick.
+
+        // 3. Solution 3
+        function handleClick(color) {
+            return function(){
+                document.body.style.backgroundColor = `${color}`;
+            }
+        }
+        document.getElementById("orange").onclick = handleClick("orange");
+        document.getElementById("green").onclick = handleClick("green");
+        // This solution is similar to solution 2 but instead of using an arrow function, we are returning a new function from handleClick that sets the background color, this is possible because of closures in JavaScript, that allows the inner function to retain the lexical scope of the outer function, even after the outer function has finished executing.
+        // This is the ideal example of closure in JavaScript, where the inner function retains access to the outer function's variables even after the outer function has finished executing.
+
+        // The solution 2 & 3 are using closures to create a new function that calls handleClick with the desired argument.
+    </script>
+</body>
+</html>

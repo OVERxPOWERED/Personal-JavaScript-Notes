@@ -1,0 +1,61 @@
+<!-- 
+bind() method in JavaScript
+The bind() method is used to combine the "this"(context) of one fuction/class with another function/class.
+
+The main difference b/w bind() and call() is that bind() returns a new function with the "this" keyword set to the value passed as the first argument to bind(), while call() immediately invokes the function with the "this" keyword set to the value passed as the first argument to call().
+
+Multiple arguments can be passed to the bind() method, which will be passed as arguments to the function when it is invoked.
+
+below is an example of how to use the bind() method in JavaScript.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+</head>
+
+<body>
+    <button>Click</button>
+</body>
+<script>
+
+
+
+    class React {
+        constructor() {
+            this.library = "React";
+            this.version = "18.2.0";
+
+            document
+                .querySelector("button")
+                .addEventListener(
+                    "click",
+                    // this.handleClick // this will not work as expected i.e. it will not have access to the 'this' keyword of the React class instance.
+                    this.handleClick.bind(this) // binding the context of button with the React class instance, now it will work as expected, it will have access to the 'this' keyword of the React class instance.
+                )
+        }
+        handleClick() {
+            console.log(`You clicked the button of ${this.library} version ${this.version}`);
+            // Output before binding: 
+            // You clicked the button of undefined version undefined
+            
+            // Explanation:
+            // The 'this' keyword refers to the button element, not the React class instance, so it cannot access the 'library' and 'version' properties.
+            // We need to bind the context of button with the React class instance.
+            // And for this purpose we use bind()
+            // See line 33
+
+            // Output after binding:
+            // You clicked the button of React version 18.2.0
+        }
+    }
+
+    const app = new React();
+
+
+</script>
+
+</html>
